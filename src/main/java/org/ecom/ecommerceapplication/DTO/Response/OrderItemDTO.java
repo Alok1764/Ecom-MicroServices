@@ -1,0 +1,18 @@
+package org.ecom.ecommerceapplication.DTO.Response;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+
+import java.math.BigDecimal;
+
+@Data
+@AllArgsConstructor
+@Builder
+public class OrderItemDTO {
+    private Long id;
+    private Long productId;
+    private Integer quantity;
+    private BigDecimal price;
+    private BigDecimal subTotal;
+}
