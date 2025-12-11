@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>org.ecom</groupId>
-    <artifactId>ecommerce-application</artifactId>
+    <artifactId>e_commerce_microservices</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>ecommerce-application</name>
-    <description>ecommerce-application</description>
+    <name>e_commerce_microservices</name>
+    <description>e_commerce_microservices</description>
     <url/>
     <licenses>
         <license/>
