@@ -25,7 +25,7 @@ public class Users {
     private String phone;
 
     @Enumerated(EnumType.STRING)
-    private UserRole role=UserRole.CUSTOMER;
+    private UserRole role;
 
     @OneToOne(mappedBy = "user",cascade = CascadeType.ALL,orphanRemoval = true)
     private Address address;
@@ -44,4 +44,11 @@ public class Users {
     @UpdateTimestamp
     @Column(nullable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
     private LocalDateTime updatedAt;
+
+    @PrePersist
+    private  void prePersist(){
+        if(this.role==null){
+            role=UserRole.CUSTOMER;
+        }
+    }
 }

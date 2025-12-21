@@ -29,7 +29,7 @@ public class Product {
     private Integer stockQuantity;
     private String category;
     private String imageUrl;
-    private Boolean active = true;
+    private Boolean active;
 
     @OneToMany(mappedBy = "product",cascade = CascadeType.ALL)
     private List<CartItem> cartItems;
@@ -41,4 +41,11 @@ public class Product {
     @UpdateTimestamp
     @Column(nullable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
     private LocalDateTime updatedAt;
+
+    @PrePersist
+    private  void prePersist(){
+        if(this.active==null){
+            active=true;
+        }
+    }
 }

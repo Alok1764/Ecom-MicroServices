@@ -32,7 +32,7 @@ public class Order {
     private BigDecimal totalAmount;
 
     @Enumerated(EnumType.STRING)
-    private OrderStatus status = OrderStatus.PENDING;
+    private OrderStatus status;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<OrderItem> orderItems;
@@ -42,4 +42,11 @@ public class Order {
 
     @UpdateTimestamp
     private LocalDateTime updatedAt;
+
+    @PrePersist
+    private  void prePersist(){
+        if(this.status==null){
+            status=OrderStatus.PENDING;
+        }
+    }
 }
