@@ -28,7 +28,7 @@ public class UsersService {
                 .collect(Collectors.toList());
     }
 
-    public Optional<UserResponse> fetchUser(Long id) {
+    public Optional<UserResponse> fetchUser(String id) {
         return usersRepo.findById(id)
                 .map(this::mapToUserResponse);
     }
@@ -40,7 +40,7 @@ public class UsersService {
     }
 
 
-    public boolean updateUser(Long id, UserRequest updateUserRequest) {
+    public boolean updateUser(String id, UserRequest updateUserRequest) {
         return usersRepo.findById(id)
                 .map(users -> {
                     updateUserFromRequest(users,updateUserRequest);
@@ -57,7 +57,6 @@ public class UsersService {
         user.setPhone(userRequest.getPhone());
         if (userRequest.getAddress() != null) {
             Address address = Address.builder()
-                    .user(user)
                     .street(userRequest.getAddress().getStreet())
                     .state(userRequest.getAddress().getState())
                     .zipcode(userRequest.getAddress().getZipcode())

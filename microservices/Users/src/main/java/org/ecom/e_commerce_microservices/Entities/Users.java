@@ -1,55 +1,40 @@
 package org.ecom.e_commerce_microservices.Entities;
 
-import jakarta.persistence.*;
 import lombok.*;
 import org.ecom.e_commerce_microservices.Enums.UserRole;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
-@Entity
-@Table(name = "user_table")
+@Document(collection="users" )
 public class Users {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
+    @Id
+    private String id;
     private String firstName;
     private String lastName;
+
+    @Indexed(unique = true)
     private String email;
     private String phone;
+    @Builder.Default
+    private UserRole role=UserRole.CUSTOMER;
 
-    @Enumerated(EnumType.STRING)
-    private UserRole role;
-
-    @OneToOne(mappedBy = "user",cascade = CascadeType.ALL,orphanRemoval = true)
     private Address address;
 
-
-//    @OneToMany(mappedBy ="user",cascade = CascadeType.ALL)
-//    private List<CartItem> cartItems;
-//
-//    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
-//    private List<Order> orders;
-
-    @CreationTimestamp
-    @Column(nullable = false, updatable = false)
+    @CreatedDate
     private LocalDateTime createdAt;
 
-    @UpdateTimestamp
-    @Column(nullable = false)
+    @LastModifiedDate
     private LocalDateTime updatedAt;
 
-    @PrePersist
-    private  void prePersist(){
-        if(this.role==null){
-            role=UserRole.CUSTOMER;
-        }
-    }
 }

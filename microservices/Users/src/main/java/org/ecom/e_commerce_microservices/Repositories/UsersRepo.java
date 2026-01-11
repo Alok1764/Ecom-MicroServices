@@ -1,7 +1,7 @@
 package org.ecom.e_commerce_microservices.Repositories;
 
 import org.ecom.e_commerce_microservices.Entities.Users;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.mongodb.repository.MongoRepository;
 
-public interface UsersRepo extends JpaRepository<Users,Long> {
+public interface UsersRepo extends MongoRepository<Users,String> {
 }
