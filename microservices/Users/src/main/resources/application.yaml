@@ -3,8 +3,8 @@ spring:
     name: users
 
   mongodb:
-#    uri: mongodb://localhost:27017/users_db
-    uri: ${MONGODB_URI}
+    uri: mongodb://localhost:27017/users_db
+#    uri: ${MONGODB_URI}
 
 
 #  datasource:

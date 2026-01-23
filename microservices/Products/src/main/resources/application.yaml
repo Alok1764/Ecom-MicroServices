@@ -3,10 +3,12 @@ spring:
     name: Products
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/products_db
-    username: ecom_user
-    password: ecom_user
-
+#    url: jdbc:postgresql://ep-wild-glitter-a1f1724e-pooler.ap-southeast-1.aws.neon.tech/product?sslmode=require&channel_binding=require
+#    username: neondb_owner
+#    password: ${NEONDB_PASS}
+      url: jdbc:postgresql://localhost:5432/products_db
+      username: ecom_user
+      password: ecom_user
 
   jpa:
     show-sql: true
